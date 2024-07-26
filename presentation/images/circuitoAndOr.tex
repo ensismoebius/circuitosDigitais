@@ -1,0 +1,23 @@
+% Define cores personalizadas
+\definecolor{vermelho}{HTML}{FF0000}
+\definecolor{verde}{HTML}{00FF00}
+
+
+\begin{tikzpicture}[circuit logic US, scale=1]
+	% Define nós de entrada
+	\node (a) at (0,0) {$a$};
+	\node (b) [below=0.5cm of a] {$b$};
+	\node (c) [below=0.5cm of b] {$c$};
+	
+	% Define portas lógicas usando coordenadas relativas
+	\node (or) [or gate, right=1cm of a.east, yshift=-0.5cm, draw=vermelho, fill=vermelho!20] {};
+	\node (and) [and gate, right=1cm of or.output, yshift=-.5cm, draw=verde, fill=verde!20] {};
+	
+	% Desenhar as conexões
+	\draw [draw=black, line width=.3mm] (a.east) -- ++(0.5,0) |- (or.input 1);
+	\draw [draw=black, line width=.3mm] (b.east) -- ++(0.5,0) |- (or.input 2);
+	
+	\draw [draw=black, line width=.3mm] (or.output) -- ++(0.5,0) |- (and.input 1);
+	\draw [draw=black, line width=.3mm] (c.east) -- ++(0.5,0) |- (and.input 2);
+	\draw [draw=black, line width=.3mm] (and.output) -- ++(0.5,0) node[right] {$\text{saída}$};
+\end{tikzpicture}
