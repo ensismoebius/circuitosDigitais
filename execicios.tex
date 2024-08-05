@@ -1,0 +1,317 @@
+\documentclass{beamer}
+
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{circuits.logic.US}
+
+\title{Exercícios de Circuitos Combinacionais}
+\author{Seu Nome}
+\date{\today}
+
+\begin{document}
+	
+	\frame{\titlepage}
+	
+	% Exercício 1
+	\begin{frame}
+		\frametitle{Exercício 1}
+		Identifique a tabela verdade para a porta lógica AND.
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Resposta do Exercício 1}
+		A tabela verdade para a porta AND é:
+		\begin{center}
+			\begin{tabular}{|c|c|c|}
+				\hline
+				A & B & F \\
+				\hline
+				0 & 0 & 0 \\
+				0 & 1 & 0 \\
+				1 & 0 & 0 \\
+				1 & 1 & 1 \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{frame}
+	
+	% Exercício 2
+	\begin{frame}
+		\frametitle{Exercício 2}
+		Dada a tabela verdade a seguir, construa a expressão lógica correspondente:
+		\begin{center}
+			\begin{tabular}{|c|c|c|}
+				\hline
+				A & B & F \\
+				\hline
+				0 & 0 & 0 \\
+				0 & 1 & 1 \\
+				1 & 0 & 1 \\
+				1 & 1 & 0 \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Resposta do Exercício 2}
+		A expressão lógica correspondente é:
+		\[
+		F = \overline{A \oplus B}
+		\]
+	\end{frame}
+	
+	% Exercício 3
+	\begin{frame}
+		\frametitle{Exercício 3}
+		Dada a expressão lógica \( F = A \cdot \overline{B} \), desenhe o circuito combinacional correspondente.
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Resposta do Exercício 3}
+		O circuito combinacional correspondente é:
+		\begin{center}
+			\begin{tikzpicture}
+				\node (A) at (0,1.5) {A};
+				\node (B) at (0,0) {B};
+				\node[not gate US, draw, logic gate inputs=nn] at (2,0) (notB) {};
+				\node[and gate US, draw, logic gate inputs=nn] at (4,0.75) (and1) {};
+				
+				\draw (A) -| (and1.input 1);
+				\draw (B) -- (notB.input);
+				\draw (notB.output) -| (and1.input 2);
+				\draw (and1.output) -- ++(1,0) node[right] {F};
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+	
+	% Exercício 4
+	\begin{frame}
+		\frametitle{Exercício 4}
+		Dado o circuito combinacional a seguir, construa a tabela verdade correspondente:
+		\begin{center}
+			\begin{tikzpicture}
+				\node (A) at (0,2) {A};
+				\node (B) at (0,0) {B};
+				\node[and gate US, draw, logic gate inputs=nn] at (2,1) (and1) {};
+				\node[not gate US, draw, logic gate inputs=nn] at (4,1) (not1) {};
+				
+				\draw (A) -| (and1.input 1);
+				\draw (B) -| (and1.input 2);
+				\draw (and1.output) -- (not1.input);
+				\draw (not1.output) -- ++(1,0) node[right] {F};
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Resposta do Exercício 4}
+		A tabela verdade correspondente é:
+		\begin{center}
+			\begin{tabular}{|c|c|c|}
+				\hline
+				A & B & F \\
+				\hline
+				0 & 0 & 1 \\
+				0 & 1 & 1 \\
+				1 & 0 & 1 \\
+				1 & 1 & 0 \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{frame}
+	
+	% Exercício 5
+	\begin{frame}
+		\frametitle{Exercício 5}
+		Dada a expressão lógica \( F = A \cdot B + \overline{A} \cdot \overline{B} \), construa a tabela verdade correspondente.
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Resposta do Exercício 5}
+		A tabela verdade correspondente é:
+		\begin{center}
+			\begin{tabular}{|c|c|c|}
+				\hline
+				A & B & F \\
+				\hline
+				0 & 0 & 1 \\
+				0 & 1 & 0 \\
+				1 & 0 & 0 \\
+				1 & 1 & 1 \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{frame}
+	
+	% Exercício 6
+	\begin{frame}
+		\frametitle{Exercício 6}
+		Identifique as portas lógicas utilizadas no seguinte circuito combinacional:
+		\begin{center}
+			\begin{tikzpicture}
+				\node (A) at (0,2) {A};
+				\node (B) at (0,0) {B};
+				\node[or gate US, draw, logic gate inputs=nn] at (2,1) (or1) {};
+				\node[not gate US, draw, logic gate inputs=nn] at (4,1) (not1) {};
+				
+				\draw (A) -| (or1.input 1);
+				\draw (B) -| (or1.input 2);
+				\draw (or1.output) -- (not1.input);
+				\draw (not1.output) -- ++(1,0) node[right] {F};
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Resposta do Exercício 6}
+		As portas lógicas utilizadas são:
+		\begin{itemize}
+			\item Porta OR
+			\item Porta NOT
+		\end{itemize}
+	\end{frame}
+	
+	% Exercício 7
+	\begin{frame}
+		\frametitle{Exercício 7}
+		Dada a expressão lógica \( F = A + B \cdot \overline{C} \), desenhe o circuito combinacional correspondente.
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Resposta do Exercício 7}
+		O circuito combinacional correspondente é:
+		\begin{center}
+			\begin{tikzpicture}
+				\node (A) at (0,3) {A};
+				\node (B) at (0,1.5) {B};
+				\node (C) at (0,0) {C};
+				\node[not gate US, draw, logic gate inputs=nn] at (2,0) (notC) {};
+				\node[and gate US, draw, logic gate inputs=nn] at (4,1.5) (and1) {};
+				\node[or gate US, draw, logic gate inputs=nn] at (6,1.5) (or1) {};
+				
+				\draw (A) -- (or1.input 1);
+				\draw (B) -| (and1.input 1);
+				\draw (notC.output) -| (and1.input 2);
+				\draw (C) -- (notC.input);
+				\draw (and1.output) -- (or1.input 2);
+				\draw (or1.output) -- ++(1,0) node[right] {F};
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+	
+	% Exercício 8
+	\begin{frame}
+		\frametitle{Exercício 8}
+		Construa a expressão lógica a partir do seguinte circuito combinacional:
+		\begin{center}
+			\begin{tikzpicture}
+				\node (A) at (0,2) {A};
+				\node (B) at (0,0) {B};
+				\node[and gate US, draw, logic gate inputs=nn] at (2,1) (and1) {};
+				\node[or gate US, draw, logic gate inputs=nn] at (4,1) (or1) {};
+				
+				\draw (A) -| (and1.input 1);
+				\draw (B) -| (and1.input 2);
+				\draw (A) -- ++(0.5,0) |- (or1.input 1);
+				\draw (and1.output) -- (or1.input 2);
+				\draw (or1.output) -- ++(1,0) node[right] {F};
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Resposta do Exercício 8}
+		A expressão lógica correspondente é:
+		\[
+		F = A + A \cdot B
+		\]
+	\end{frame}
+	
+	% Exercício 9
+	\begin{frame}
+		\frametitle{Exercício 9}
+		Dada a expressão lógica \( F = (A \cdot B + \overline{C}) \cdot (A + C) \), desenhe o circuito combinacional correspondente.
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Resposta do Exercício 9}
+		O circuito combinacional correspondente é:
+		\begin{center}
+			\begin{tikzpicture}
+				\node (A) at (0,4) {A};
+				\node (B) at (0,2) {B};
+				\node (C) at (0,0) {C};
+				\node[not gate US, draw, logic gate inputs=nn] at (2,0) (notC) {};
+				\node[and gate US, draw, logic gate inputs=nn] at (4,3) (and1) {};
+				\node[or gate US, draw, logic gate inputs=nn] at (6,3) (or1) {};
+				\node[or gate US, draw, logic gate inputs=nn] at (4,1.5) (or2) {};
+				\node[and gate US, draw, logic gate inputs=nn] at (8,3) (and2) {};
+				
+				\draw (A) -| (and1.input 1);
+				\draw (B) -| (and1.input 2);
+				\draw (and1.output) -- (or1.input 1);
+				\draw (C) -- (notC.input);
+				\draw (notC.output) -| (or1.input 2);
+				\draw (A) -- ++(2,0) |- (or2.input 1);
+				\draw (C) -- ++(2,0) |- (or2.input 2);
+				\draw (or1.output) -- (and2.input 1);
+				\draw (or2.output) -- (and2.input 2);
+				\draw (and2.output) -- ++(1,0) node[right] {F};
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+	
+	% Exercício 10
+	\begin{frame}
+		\frametitle{Exercício 10}
+		Dado o circuito combinacional a seguir, construa a expressão lógica e a tabela verdade correspondente:
+		\begin{center}
+			\begin{tikzpicture}
+				\node (A) at (0,4) {A};
+				\node (B) at (0,2) {B};
+				\node (C) at (0,0) {C};
+				\node[or gate US, draw, logic gate inputs=nn] at (2,3) (or1) {};
+				\node[and gate US, draw, logic gate inputs=nn] at (4,1) (and1) {};
+				\node[and gate US, draw, logic gate inputs=nn] at (6,2) (and2) {};
+				\node[or gate US, draw, logic gate inputs=nn] at (8,2) (or2) {};
+				
+				\draw (A) -- (or1.input 1);
+				\draw (B) -| (or1.input 2);
+				\draw (or1.output) -| (and1.input 1);
+				\draw (C) -- (and1.input 2);
+				\draw (A) -| (and2.input 1);
+				\draw (and1.output) -- ++(0.5,0) |- (and2.input 2);
+				\draw (and2.output) -- (or2.input 1);
+				\draw (B) -| (or2.input 2);
+				\draw (or2.output) -- ++(1,0) node[right] {F};
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Resposta do Exercício 10}
+		A expressão lógica correspondente é:
+		\[
+		F = (A + B) \cdot C + A \cdot ((A + B) \cdot C) + B
+		\]
+		A tabela verdade correspondente é:
+		\begin{center}
+			\begin{tabular}{|c|c|c|c|}
+				\hline
+				A & B & C & F \\
+				\hline
+				0 & 0 & 0 & 0 \\
+				0 & 0 & 1 & 0 \\
+				0 & 1 & 0 & 1 \\
+				0 & 1 & 1 & 1 \\
+				1 & 0 & 0 & 0 \\
+				1 & 0 & 1 & 1 \\
+				1 & 1 & 0 & 1 \\
+				1 & 1 & 1 & 1 \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{frame}
+	
+\end{document}
