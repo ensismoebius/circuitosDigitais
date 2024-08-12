@@ -647,90 +647,101 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Exercícios}
+	\frametitle{Porta XOR}
+	\par Agora que temos acesso a novos circuitos que foram abstraídos em portas podemos, combinando essas portas, criar novas portas como as estradas a seguir.
+	\par XOR: $\boxed{\overline{a}.b+a.\overline{b} = a \oplus b}$
+	\begin{columns}
+		\column{0.5\textwidth}
+			\begin{figure}
+				\centering
+				\input{images/cicuitoXOR}
+				\caption{O circuito da porta XOR}
+				\label{fig:cicuitoxor}
+			\end{figure}
+		\column{0.5\textwidth}
+			\begin{figure}
+				\centering
+				\input{images/cicuitoXORAbstrato}
+				\caption{Porta XOR}
+				\label{fig:cicuitoxorabstrato}
+			\end{figure}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Porta NOR}
+	\par NOR: $\boxed{\overline{a+b} = a \downarrow b}$
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{figure}
+			\centering
+			\input{images/cicuitoNOR.tex}
+			\caption{O circuito da porta NOR}
+			\label{fig:cicuitonor}
+		\end{figure}
+		\column{0.5\textwidth}
+		\begin{figure}
+			\centering
+			\input{images/cicuitoNORAbstrato.tex}
+			\caption{Porta NOR}
+			\label{fig:cicuitonorabstrato}
+		\end{figure}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Porta NAND}
+	\par NAND: $\boxed{\overline{a.b} = a \uparrow b}$
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{figure}
+			\centering
+			\input{images/cicuitoNAND.tex}
+			\caption{O circuito da porta NAND}
+			\label{fig:cicuitonand}
+		\end{figure}
+		\column{0.5\textwidth}
+		\begin{figure}
+			\centering
+			\input{images/cicuitoNANDAbstrato.tex}
+			\caption{Porta NAND}
+			\label{fig:cicuitonandabstrato}
+		\end{figure}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Exercícios de treino}
 	\only<1>{
-		\par Dada a expressão lógica \( F = A \cdot \overline{B} \), desenhe o circuito combinacional correspondente.
+		\par Dado o circuito combinacional a seguir, construa a expressão lógica e a tabela verdade:
+		\begin{figure}
+			\centering
+			\input{images/exe06}
+			\label{fig:exe06}
+		\end{figure}
 	}
 	\only<2>{
-		\par Dada a expressão lógica \( F = A \cdot B + \overline{A} \cdot \overline{B} \), construa a tabela verdade correspondente.
+		\par Dado o circuito combinacional a seguir, construa a expressão lógica e a tabela verdade:
+		\begin{figure}
+			\centering
+			\input{images/exe07}
+			\label{fig:exe07}
+		\end{figure}
 	}
 	\only<3>{
-		\par Dada a expressão lógica \( F = (A \cdot B + \overline{C}) \cdot (A + C) \), desenhe o circuito combinacional correspondente.
+		\begin{enumerate}
+			\item Dada a expressão lógica \( f = a \cdot \overline{b} \), desenhe o circuito combinacional correspondente.
+			\item Dada a expressão lógica \( f = a \cdot b + \overline{a} \cdot \overline{b} \), construa a tabela verdade correspondente.
+			\item Dada a expressão lógica \( f = (a \cdot b + \overline{c}) \cdot (a + c) \), desenhe o circuito combinacional correspondente.
+			\item Dada a expressão lógica \( f = a + b \cdot \overline{c} \), desenhe o circuito combinacional correspondente.
+		\end{enumerate}
 	}
 	\only<4>{
-		\par Construa a expressão lógica a partir do seguinte circuito combinacional:
-		\begin{center}
-			\begin{tikzpicture}
-				\node (A) at (0,2) {A};
-				\node (B) at (0,0) {B};
-				\node[and gate US, draw, logic gate inputs=nn] at (2,1) (and1) {};
-				\node[or gate US, draw, logic gate inputs=nn] at (4,1) (or1) {};
-				
-				\draw (A) -| (and1.input 1);
-				\draw (B) -| (and1.input 2);
-				\draw (A) -- ++(0.5,0) |- (or1.input 1);
-				\draw (and1.output) -- (or1.input 2);
-				\draw (or1.output) -- ++(1,0) node[right] {F};
-			\end{tikzpicture}
-		\end{center}
-	}
-	\only<5>{
-		\par Dada a expressão lógica \( F = A + B \cdot \overline{C} \), desenhe o circuito combinacional correspondente.
-	}
-	\only<6>{
-		\par Identifique as portas lógicas utilizadas no seguinte circuito combinacional:
-		\begin{center}
-			\begin{tikzpicture}
-				\node (A) at (0,2) {A};
-				\node (B) at (0,0) {B};
-				\node[or gate US, draw, logic gate inputs=nn] at (2,1) (or1) {};
-				\node[not gate US, draw, logic gate inputs=nn] at (4,1) (not1) {};
-				
-				\draw (A) -| (or1.input 1);
-				\draw (B) -| (or1.input 2);
-				\draw (or1.output) -- (not1.input);
-				\draw (not1.output) -- ++(1,0) node[right] {F};
-			\end{tikzpicture}
-		\end{center}
-	}
-	\only<7>{
-		\par Dado o circuito combinacional a seguir, construa a tabela verdade correspondente:
-		\begin{center}
-			\begin{tikzpicture}
-				\node (A) at (0,2) {A};
-				\node (B) at (0,0) {B};
-				\node[and gate US, draw, logic gate inputs=nn] at (2,1) (and1) {};
-				\node[not gate US, draw, logic gate inputs=nn] at (4,1) (not1) {};
-				
-				\draw (A) -| (and1.input 1);
-				\draw (B) -| (and1.input 2);
-				\draw (and1.output) -- (not1.input);
-				\draw (not1.output) -- ++(1,0) node[right] {F};
-			\end{tikzpicture}
-		\end{center}
-	}
-	\only<8>{
 		\par Dado o circuito combinacional a seguir, construa a expressão lógica e a tabela verdade correspondente:
-		\begin{center}
-			\begin{tikzpicture}
-				\node (A) at (0,4) {A};
-				\node (B) at (0,2) {B};
-				\node (C) at (0,0) {C};
-				\node[or gate US, draw, logic gate inputs=nn] at (2,3) (or1) {};
-				\node[and gate US, draw, logic gate inputs=nn] at (4,1) (and1) {};
-				\node[and gate US, draw, logic gate inputs=nn] at (6,3) (and2) {};
-				\node[or gate US, draw, logic gate inputs=nn] at (8,2) (or2) {};
-				
-				\draw (A) -- (or1.input 1);
-				\draw (B) -| (or1.input 2);
-				\draw (or1.output) -| (and1.input 1);
-				\draw (C) -- (and1.input 2);
-				\draw (A) -| (and2.input 1);
-				\draw (and1.output) -- ++(0.5,0) |- (and2.input 2);
-				\draw (and2.output) -- (or2.input 1);
-				\draw (B) -| (or2.input 2);
-				\draw (or2.output) -- ++(1,0) node[right] {F};
-			\end{tikzpicture}
-		\end{center}
+		\begin{figure}
+			\centering
+			\input{images/exe08}
+			\label{fig:exe08}
+		\end{figure}
 	}
 \end{frame}

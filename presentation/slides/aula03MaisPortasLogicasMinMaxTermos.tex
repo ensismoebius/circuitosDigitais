@@ -1,0 +1,293 @@
+\begin{frame}{Diagrama de Tempo (\textit{Waveform})}
+	\par Quando fazemos o diagrama de tempo ou o \textit{waveform} apresentamos ao circuito uma sequência de  sinais de forma que o circuito responde a essa sequência gerando outras sequências. 
+	\begin{itemize}
+		\item Mostra os estados do circuito ao longo do tempo.
+		\item Permite a visualização do comportamento do circuito durante o tempo.
+	\end{itemize}
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/waveform01}
+		\caption{Consegue saber qual porta é esta?}
+		\label{fig:waveform01}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Exercícios}
+	\par Construção de Circuito a partir de Expressão Algébrica
+	\begin{itemize}
+		\item Dada a expressão algébrica \(F(x, y, z) = \overline{x} \cdot y + x \cdot \overline{y} \cdot z\), construa:
+		\begin{enumerate}
+			\item O circuito correspondente usando portas lógicas básicas (AND, OR, NOT).
+			\item A tabela verdade que representa o comportamento da função.
+			\item O diagrama de tempo (waveform) que mostra os estados do circuito para todas as combinações de \(x\), \(y\) e \(z\) ao longo do tempo.
+		\end{enumerate}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Exercícios}
+	\par Análise de Diagrama de Tempo
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{images/waveform02}
+		\label{fig:waveform02}
+	\end{figure}
+	\begin{columns}
+		\column{.5\linewidth}
+		\begin{itemize}
+			\item Considerando o diagrama dado:
+			\begin{enumerate}
+				\item O circuito que pode gerar o comportamento mostrado no diagrama.
+				\item A tabela verdade associada ao circuito.
+				\item A expressão algébrica correspondente ao circuito.
+			\end{enumerate}
+		\end{itemize}
+		\pause
+		\column{.2\linewidth}
+		\par Tabela verdade:
+		\begin{center}
+			\begin{tabular}{cc|c}
+				$x$&$y$&$z$\\
+				\hline
+				$0$&$0$&$1$\\
+				$0$&$1$&$0$\\
+				$1$&$0$&$1$\\
+				$1$&$1$&$1$\\
+			\end{tabular}
+		\end{center}		
+		\par Expressão:
+		$z =  \overline{y} +x$
+		\column{.3\linewidth}
+		\begin{figure}
+			\centering
+			\input{images/exe09}
+			\label{fig:exe09}
+		\end{figure}
+	\end{columns}
+\end{frame}
+
+
+	\begin{frame}{Exemplo de min termos e max termos}
+		\par Exemplo: Determinação de Função Lógica a partir de Tabela Verdade Usando Mintermos e Maxtermos
+		
+		\par{Tabela Verdade}
+		
+		\par Vamos considerar uma função booleana \(f(a, b, c)\) com três variáveis. Aqui está a tabela verdade:
+		
+		\[
+		\begin{array}{|c|c|c|c|}
+			\hline
+			a & b & c & f(a, b, c) \\
+			\hline
+			0 & 0 & 0 & 0 \\
+			0 & 0 & 1 & 1 \\
+			0 & 1 & 0 & 0 \\
+			0 & 1 & 1 & 1 \\
+			1 & 0 & 0 & 1 \\
+			1 & 0 & 1 & 1 \\
+			1 & 1 & 0 & 0 \\
+			1 & 1 & 1 & 0 \\
+			\hline
+		\end{array}
+		\]
+	\end{frame}
+	
+	\begin{frame}{Exemplo de min termos e max termos}
+		\par{Determinação da Função Usando Mintermos}
+		
+		\textbf{Passo 1:} Identifique as linhas onde \(f(a, b, c) = 1\).
+		
+		\par As linhas onde a função vale 1 são:
+		\begin{itemize}
+			\item Linha 2: \(a = 0\), \(b = 0\), \(c = 1\)  \(\rightarrow\) Mintermo: \(a'b'c\)
+			\item Linha 4: \(a = 0\), \(b = 1\), \(c = 1\)  \(\rightarrow\) Mintermo: \(a'bc\)
+			\item Linha 5: \(a = 1\), \(b = 0\), \(c = 0\)  \(\rightarrow\) Mintermo: \(ab'c'\)
+			\item Linha 6: \(a = 1\), \(b = 0\), \(c = 1\)  \(\rightarrow\) Mintermo: \(ab'c\)
+		\end{itemize}
+		
+		\textbf{Passo 2:} Escreva a função como a soma (OR) desses mintermos.
+		
+		A função lógica pode ser expressa como a soma dos mintermos correspondentes:
+		
+		\[
+		f(a, b, c) = a'b'c + a'bc + ab'c' + ab'c
+		\]
+	\end{frame}
+	
+	\begin{frame}{Exemplo de min termos e max termos}
+		\par{Determinação da Função Usando Maxtermos}
+		
+		\textbf{Passo 1:} Identifique as linhas onde \(f(a, b, c) = 0\).
+		
+		As linhas onde a função vale 0 são:
+		\begin{itemize}
+			\item Linha 1: \(a = 0\), \(b = 0\), \(c = 0\)  \(\rightarrow\) Maxtermo: \((a + b + c)\)
+			\item Linha 3: \(a = 0\), \(b = 1\), \(c = 0\)  \(\rightarrow\) Maxtermo: \((a + b' + c)\)
+			\item Linha 7: \(a = 1\), \(b = 1\), \(c = 0\)  \(\rightarrow\) Maxtermo: \((a' + b + c)\)
+			\item Linha 8: \(a = 1\), \(b = 1\), \(c = 1\)  \(\rightarrow\) Maxtermo: \((a' + b + c')\)
+		\end{itemize}
+		
+		\textbf{Passo 2:} Escreva a função como o produto (AND) desses maxtermos.
+		
+		A função lógica pode ser expressa como o produto dos maxtermos correspondentes:
+		
+		\[
+		f(a, b, c) = (a + b + c) \cdot (a + b' + c) \cdot (a' + b + c) \cdot (a' + b + c')
+		\]
+	\end{frame}
+	
+	\begin{frame}{Exemplo de min termos e max termos}
+		\par{Resumo}
+		
+		\begin{itemize}
+			\item \textbf{Usando Mintermos (Soma de Produtos Canônica):} A função é expressa como a soma (OR) dos mintermos das linhas onde a função vale 1.
+			\item \textbf{Usando Maxtermos (Produto de Somas Canônica):} A função é expressa como o produto (AND) dos maxtermos das linhas onde a função vale 0.
+		\end{itemize}
+		
+	\end{frame}
+
+
+\begin{frame}{Definição e Propriedades}
+	\begin{itemize}
+		\item A implementação canônica de uma função booleana que seleciona os produtos das variáveis onde o resultado é 1.
+		\item Propriedades:
+		\begin{itemize}
+			\item Unicidade: Existe uma única SOP canônica para cada função booleana.
+			\item Importância: Útil na análise e síntese de circuitos digitais.
+			\item Minimização: Pode ser simplificada com Mapas de Karnaugh ou Quine-McCluskey.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Exemplo de SOP Canônica}
+	\begin{itemize}
+		\item Considere a função F(A, B, C) definida pela tabela verdade:
+		\item \textbf{Tabela Verdade:}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			A & B & C & F(A, B, C) \\
+			\hline
+			0 & 0 & 0 & 0 \\
+			0 & 0 & 1 & 1 \\
+			0 & 1 & 0 & 0 \\
+			0 & 1 & 1 & 1 \\
+			1 & 0 & 0 & 1 \\
+			1 & 0 & 1 & 1 \\
+			1 & 1 & 0 & 0 \\
+			1 & 1 & 1 & 1 \\
+			\hline
+		\end{tabular}
+		\item \textbf{Mintermos:}
+		\begin{itemize}
+			\item A'B'C, A'BC, AB'C', ABC', ABC
+		\end{itemize}
+		\item \textbf{SOP Canônica:}
+		\[
+		F(A,B,C) = A'B'C + A'BC + AB'C' + ABC' + ABC
+		\]
+	\end{itemize}
+\end{frame}
+
+\section{Produto de Somas Canônica (POS)}
+
+\begin{frame}{Definição e Propriedades}
+	\begin{itemize}
+		\item Forma canônica que seleciona as somas das variáveis onde o resultado é 0.
+		\item Propriedades:
+		\begin{itemize}
+			\item Unicidade: Existe uma única POS canônica para cada função booleana.
+			\item Importância: Utilizada em design digital para implementar lógica com portas OR e AND.
+			\item Minimização: Pode ser simplificada como a SOP canônica.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Exemplo de POS Canônica}
+	\begin{itemize}
+		\item \textbf{Tabela Verdade:}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			A & B & C & F(A, B, C) \\
+			\hline
+			0 & 0 & 0 & 0 \\
+			0 & 0 & 1 & 1 \\
+			0 & 1 & 0 & 0 \\
+			0 & 1 & 1 & 1 \\
+			1 & 0 & 0 & 1 \\
+			1 & 0 & 1 & 1 \\
+			1 & 1 & 0 & 0 \\
+			1 & 1 & 1 & 1 \\
+			\hline
+		\end{tabular}
+		\item \textbf{Maxtermos:}
+		\begin{itemize}
+			\item (A + B + C), (A + B' + C), (A' + B + C')
+		\end{itemize}
+		\item \textbf{POS Canônica:}
+		\[
+		F(A,B,C) = (A + B + C) \cdot (A + B' + C) \cdot (A' + B + C')
+		\]
+	\end{itemize}
+\end{frame}
+
+\section{Mintermos e Maxtermos}
+
+\begin{frame}{Definição de Mintermos e Maxtermos}
+	\begin{itemize}
+		\item \textbf{Mintermo:}
+		\begin{itemize}
+			\item Produto de todas as variáveis complementadas ou não.
+			\item Exemplo: `A'B'C`
+		\end{itemize}
+		\item \textbf{Maxtermo:}
+		\begin{itemize}
+			\item Soma de todas as variáveis complementadas ou não.
+			\item Exemplo: `(A + B + C')`
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Exercícios}
+	\par Criação de Circuito a partir da Tabela Verdade
+	\begin{itemize}
+		\item Dada a seguinte tabela verdade:
+		\[
+		\begin{array}{|c|c|c|c|}
+			\hline
+			x & y & z & F(x, y, z) \\
+			\hline
+			0 & 0 & 0 & 0 \\
+			0 & 0 & 1 & 1 \\
+			0 & 1 & 0 & 0 \\
+			0 & 1 & 1 & 1 \\
+			1 & 0 & 0 & 1 \\
+			1 & 0 & 1 & 0 \\
+			1 & 1 & 0 & 0 \\
+			1 & 1 & 1 & 1 \\
+			\hline
+		\end{array}
+		\]
+		\begin{enumerate}
+			\item Construa o circuito digital que implementa essa função.
+			\item Derive a expressão algébrica na forma de Soma de Produtos Canônica (SOP) a partir da tabela verdade.
+			\item Crie o diagrama de tempo correspondente ao circuito.
+		\end{enumerate}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Mini prova 03}
+	\begin{itemize}
+		\item Dado o circuito abaixo, determine:
+		\begin{enumerate}
+			\item A tabela verdade correspondente ao circuito \textbf{não simplificado}.
+			\item A expressão algébrica \textbf{simplificada} que representa a função lógica do circuito.
+			\item O circuito simplificado.
+			\item O diagrama de tempo (waveform) que reflete o comportamento do circuito.
+		\end{enumerate}
+	\end{itemize}
+	\begin{figure}
+		\centering
+		\input{images/05_exe}
+		\caption{Passarinho... Resolve esse... Qual é a expressão desse?\footnote[frame]{\textit{referência de velho}}}
+		\label{fig:05exe}
+	\end{figure}
+\end{frame}
