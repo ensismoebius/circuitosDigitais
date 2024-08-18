@@ -1,3 +1,5 @@
+\section{Diagrama de Tempo (\textit{Waveform})}
+
 \begin{frame}{Diagrama de Tempo (\textit{Waveform})}
 	\par Quando fazemos o diagrama de tempo ou o \textit{waveform} apresentamos ao circuito uma sequência de  sinais de forma que o circuito responde a essa sequência gerando outras sequências. 
 	\begin{itemize}
@@ -12,19 +14,47 @@
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Exercícios}
+\begin{frame}{Prática dirigida 01}
 	\par Construção de Circuito a partir de Expressão Algébrica
 	\begin{itemize}
-		\item Dada a expressão algébrica \(F(x, y, z) = \overline{x} \cdot y + x \cdot \overline{y} \cdot z\), construa:
+		\item Dada a expressão algébrica \(f(x, y, z) = \overline{x} \cdot y + x \cdot \overline{y} \cdot z\), construa: %f=(~x*y)+(x*~y*z)
 		\begin{enumerate}
 			\item O circuito correspondente usando portas lógicas básicas (AND, OR, NOT).
 			\item A tabela verdade que representa o comportamento da função.
 			\item O diagrama de tempo (waveform) que mostra os estados do circuito para todas as combinações de \(x\), \(y\) e \(z\) ao longo do tempo.
 		\end{enumerate}
 	\end{itemize}
+	\pause
+	\begin{columns}
+		\column{.8\linewidth}
+			\begin{figure}
+				\centering
+				\input{images/exe14}
+				\label{fig:exe14}
+			\end{figure}
+			\begin{figure}
+				\centering
+				\includegraphics[width=\linewidth]{images/waveform03}
+				\label{fig:waveform03}
+			\end{figure}
+		\column{.2\linewidth}
+			\par Tabela verdade:\\
+			\begin{tabular}{ccc|c}
+				$x$&$y$&$z$&$f$\\
+				\hline
+				$0$&$0$&$0$&$0$\\
+				$0$&$0$&$1$&$0$\\
+				$0$&$1$&$0$&$1$\\
+				$0$&$1$&$1$&$1$\\
+				$1$&$0$&$0$&$0$\\
+				$1$&$0$&$1$&$1$\\
+				$1$&$1$&$0$&$0$\\
+				$1$&$1$&$1$&$0$\\
+			\end{tabular}
+	\end{columns}
 \end{frame}
 
-\begin{frame}{Exercícios}
+\begin{frame}{Prática dirigida 02}
 	\par Análise de Diagrama de Tempo
 	\begin{figure}
 		\centering
@@ -65,88 +95,27 @@
 	\end{columns}
 \end{frame}
 
+\section{Mintermos e Maxtermos}
 
-	\begin{frame}{Exemplo de min termos e max termos}
-		\par Exemplo: Determinação de Função Lógica a partir de Tabela Verdade Usando Mintermos e Maxtermos
-		
-		\par{Tabela Verdade}
-		
-		\par Vamos considerar uma função booleana \(f(a, b, c)\) com três variáveis. Aqui está a tabela verdade:
-		
-		\[
-		\begin{array}{|c|c|c|c|}
-			\hline
-			a & b & c & f(a, b, c) \\
-			\hline
-			0 & 0 & 0 & 0 \\
-			0 & 0 & 1 & 1 \\
-			0 & 1 & 0 & 0 \\
-			0 & 1 & 1 & 1 \\
-			1 & 0 & 0 & 1 \\
-			1 & 0 & 1 & 1 \\
-			1 & 1 & 0 & 0 \\
-			1 & 1 & 1 & 0 \\
-			\hline
-		\end{array}
-		\]
-	\end{frame}
-	
-	\begin{frame}{Exemplo de min termos e max termos}
-		\par{Determinação da Função Usando Mintermos}
-		
-		\textbf{Passo 1:} Identifique as linhas onde \(f(a, b, c) = 1\).
-		
-		\par As linhas onde a função vale 1 são:
-		\begin{itemize}
-			\item Linha 2: \(a = 0\), \(b = 0\), \(c = 1\)  \(\rightarrow\) Mintermo: \(a'b'c\)
-			\item Linha 4: \(a = 0\), \(b = 1\), \(c = 1\)  \(\rightarrow\) Mintermo: \(a'bc\)
-			\item Linha 5: \(a = 1\), \(b = 0\), \(c = 0\)  \(\rightarrow\) Mintermo: \(ab'c'\)
-			\item Linha 6: \(a = 1\), \(b = 0\), \(c = 1\)  \(\rightarrow\) Mintermo: \(ab'c\)
-		\end{itemize}
-		
-		\textbf{Passo 2:} Escreva a função como a soma (OR) desses mintermos.
-		
-		A função lógica pode ser expressa como a soma dos mintermos correspondentes:
-		
-		\[
-		f(a, b, c) = a'b'c + a'bc + ab'c' + ab'c
-		\]
-	\end{frame}
-	
-	\begin{frame}{Exemplo de min termos e max termos}
-		\par{Determinação da Função Usando Maxtermos}
-		
-		\textbf{Passo 1:} Identifique as linhas onde \(f(a, b, c) = 0\).
-		
-		As linhas onde a função vale 0 são:
-		\begin{itemize}
-			\item Linha 1: \(a = 0\), \(b = 0\), \(c = 0\)  \(\rightarrow\) Maxtermo: \((a + b + c)\)
-			\item Linha 3: \(a = 0\), \(b = 1\), \(c = 0\)  \(\rightarrow\) Maxtermo: \((a + b' + c)\)
-			\item Linha 7: \(a = 1\), \(b = 1\), \(c = 0\)  \(\rightarrow\) Maxtermo: \((a' + b + c)\)
-			\item Linha 8: \(a = 1\), \(b = 1\), \(c = 1\)  \(\rightarrow\) Maxtermo: \((a' + b + c')\)
-		\end{itemize}
-		
-		\textbf{Passo 2:} Escreva a função como o produto (AND) desses maxtermos.
-		
-		A função lógica pode ser expressa como o produto dos maxtermos correspondentes:
-		
-		\[
-		f(a, b, c) = (a + b + c) \cdot (a + b' + c) \cdot (a' + b + c) \cdot (a' + b + c')
-		\]
-	\end{frame}
-	
-	\begin{frame}{Exemplo de min termos e max termos}
-		\par{Resumo}
-		
-		\begin{itemize}
-			\item \textbf{Usando Mintermos (Soma de Produtos Canônica):} A função é expressa como a soma (OR) dos mintermos das linhas onde a função vale 1.
-			\item \textbf{Usando Maxtermos (Produto de Somas Canônica):} A função é expressa como o produto (AND) dos maxtermos das linhas onde a função vale 0.
-		\end{itemize}
-		
-	\end{frame}
+\begin{frame}
+	\frametitle{Mintermos e Maxtermos}
+	\framesubtitle{Introdução}
+	\par Até agora, determinamos as expressões algébricas de forma intuitiva, analisando os circuitos e os resultados das tabelas verdade para, geralmente, identificar a expressão lógica correspondente ao circuito. A partir de agora, utilizaremos ferramentas que oferece um método bem definido para montar a expressão algébrica correspondente ao circuito analisado.
+	\par Tais ferramentas se chamam \textit{Mintermos} e \textit{Maxtermos} que, embora não produzam uma expressão otimizada, fornecem uma função inicial que pode ser manipulada e minimizada se assim o desejarmos.
+\end{frame}
 
+\begin{frame}
+	\frametitle{Mintermos e Maxtermos}
+	\framesubtitle{Definição}
+	\begin{itemize}
+		\item \textbf{Mintermos (Soma de Produtos Canônica (SOP)):} A função é expressa como a soma (OR) das linhas onde a função vale 1.
+		\item \textbf{Maxtermos (Produto de Somas Canônica (POS)):} A função é expressa como o produto (AND) das linhas onde a função vale 0.
+	\end{itemize}
+\end{frame}
 
-\begin{frame}{Definição e Propriedades}
+\begin{frame}
+	\frametitle{Mintermos e Maxtermos}
+	\framesubtitle{Definição e propriedades da soma de produtos canônica (SOP)}
 	\begin{itemize}
 		\item A implementação canônica de uma função booleana que seleciona os produtos das variáveis onde o resultado é 1.
 		\item Propriedades:
@@ -158,13 +127,128 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Exemplo de SOP Canônica}
+\begin{frame}
+	\frametitle{Mintermos e Maxtermos}
+	\framesubtitle{Definição e Propriedades do produto de somas canônica (POS)}
 	\begin{itemize}
-		\item Considere a função F(A, B, C) definida pela tabela verdade:
-		\item \textbf{Tabela Verdade:}
+		\item Forma canônica que seleciona as somas das variáveis onde o resultado é 0.
+		\item Propriedades:
+		\begin{itemize}
+			\item Unicidade: Existe uma única POS canônica para cada função booleana.
+			\item Importância: Utilizada em design digital para implementar lógica com portas OR e AND.
+			\item Minimização: Pode ser simplificada como a SOP canônica.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Mintermos e Maxtermos}
+	\framesubtitle{Exemplo de determinação de função lógica}
+	
+	\par Vamos determinar a \textbf{função lógica} a partir da tabela verdade abaixo:
+	
+	\[
+	\begin{array}{|c|c|c|c|}
+		\hline
+		\textbf{a} & \textbf{b} & \textbf{c} & \textbf{f(a, b, c)} \\
+		\hline
+		0 & 0 & 0 & 0 \\
+		0 & 0 & 1 & 1 \\
+		0 & 1 & 0 & 0 \\
+		0 & 1 & 1 & 1 \\
+		1 & 0 & 0 & 1 \\
+		1 & 0 & 1 & 1 \\
+		1 & 1 & 0 & 0 \\
+		1 & 1 & 1 & 0 \\
+		\hline
+	\end{array}
+	\]
+\end{frame}
+
+\begin{frame}
+	\frametitle{Mintermos e Maxtermos}
+	\framesubtitle{Determinação da função lógica usando Mintermos}
+	\begin{columns}
+		\column{.35\linewidth}
+			\par \textcolor{blue}{Mintermos}: Linhas onde $f(a, b, c) = 1$. \\ \textcolor{green}{Maxtermos} Linhas onde $f(a, b, c) = 0$.
+			\[
+			\begin{array}{|c|c|c|c|}
+				\hline
+				\textbf{a} & \textbf{b} & \textbf{c} & \textbf{f(a, b, c)} \\
+				\hline
+				0 & 0 & 0 & \cellcolor{green} 0 \\
+				0 & 0 & 1 & \cellcolor{blue} 1 \\
+				0 & 1 & 0 & \cellcolor{green} 0 \\
+				0 & 1 & 1 & \cellcolor{blue} 1 \\
+				1 & 0 & 0 & \cellcolor{blue} 1 \\
+				1 & 0 & 1 & \cellcolor{blue} 1 \\
+				1 & 1 & 0 & \cellcolor{green} 0 \\
+				1 & 1 & 1 & \cellcolor{green} 0 \\
+				\hline
+			\end{array}
+			\]
+		\column{.65\linewidth}
+			\par \textbf{Passo 1:} Identifique as linhas onde \(f(a, b, c) = 1\).
+			\begin{itemize}
+				\item 02: \(a = 0\), \(b = 0\), \(c = 1\)  \(\rightarrow\) Mintermo: \(\overline{a}.\overline{b}.c\)
+				\item 04: \(a = 0\), \(b = 1\), \(c = 1\)  \(\rightarrow\) Mintermo: \(\overline{a}.bc\)
+				\item 05: \(a = 1\), \(b = 0\), \(c = 0\)  \(\rightarrow\) Mintermo: \(a\overline{b}.\overline{c}\)
+				\item 06: \(a = 1\), \(b = 0\), \(c = 1\)  \(\rightarrow\) Mintermo: \(a\overline{b}.c\)
+			\end{itemize}
+			
+			\par \textbf{Passo 2:} Escreva a função como a soma (OR) desses mintermos.\newline
+			
+			\par A função lógica pode ser expressa como a soma dos mintermos correspondentes: \\$\boxed{f(a, b, c) = \overline{a}.\overline{b}.c + \overline{a}bc + a\overline{b}\overline{c} + ab\overline{c}}$
+	\end{columns}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Mintermos e Maxtermos}
+	\framesubtitle{Determinação da função lógica usando Maxtermos}
+	\begin{columns}
+		\column{.35\linewidth}
+			\par \textcolor{blue}{Mintermos}: Linhas onde $f(a, b, c) = 1$. \\ \textcolor{green}{Maxtermos} Linhas onde $f(a, b, c) = 0$.
+			\[
+			\begin{array}{|c|c|c|c|}
+				\hline
+				\textbf{a} & \textbf{b} & \textbf{c} & \textbf{f(a, b, c)} \\
+				\hline
+				0 & 0 & 0 & \cellcolor{green} 0 \\
+				0 & 0 & 1 & \cellcolor{blue} 1 \\
+				0 & 1 & 0 & \cellcolor{green} 0 \\
+				0 & 1 & 1 & \cellcolor{blue} 1 \\
+				1 & 0 & 0 & \cellcolor{blue} 1 \\
+				1 & 0 & 1 & \cellcolor{blue} 1 \\
+				1 & 1 & 0 & \cellcolor{green} 0 \\
+				1 & 1 & 1 & \cellcolor{green} 0 \\
+				\hline
+			\end{array}
+			\]
+		\column{.65\linewidth}
+			\par \textbf{Passo 1:} Identifique as linhas onde \(f(a, b, c) = 0\).
+			\begin{itemize}
+				\item 01: \(a = 0\), \(b = 0\), \(c = 0\)  \(\rightarrow\) Maxtermo: \(a + b + c\)
+				\item 03: \(a = 0\), \(b = 1\), \(c = 0\)  \(\rightarrow\) Maxtermo: \(a + \overline{b} + c\)
+				\item 07: \(a = 1\), \(b = 1\), \(c = 0\)  \(\rightarrow\) Maxtermo: \(\overline{a} + b + c\)
+				\item 08: \(a = 1\), \(b = 1\), \(c = 1\)  \(\rightarrow\) Maxtermo: \(\overline{a} + b + \overline{c}\)
+			\end{itemize}
+			
+			\textbf{Passo 2:} Escreva a função como o produto (AND) desses maxtermos.\newline
+			
+			A função lógica pode ser expressa como o produto dos maxtermos correspondentes:$f(a, b, c) =$ \\ $\boxed{(a + b + c) \cdot (a + \overline{b} + c) \cdot (\overline{a} + b + c) \cdot (\overline{a} + b + \overline{c})}$
+		\end{columns}
+\end{frame}
+
+
+\begin{frame}{SOP - Prática guiada 01}
+	\begin{itemize}
+		\item Considere a função f(a, b, c) definida pela tabela verdade:
+		\item \textbf{tabela verdade:}
 		\begin{tabular}{|c|c|c|c|}
 			\hline
-			A & B & C & F(A, B, C) \\
+			a & b & c & f(a, b, c) \\
 			\hline
 			0 & 0 & 0 & 0 \\
 			0 & 0 & 1 & 1 \\
@@ -178,35 +262,20 @@
 		\end{tabular}
 		\item \textbf{Mintermos:}
 		\begin{itemize}
-			\item A'B'C, A'BC, AB'C', ABC', ABC
+			\item $\overline{a}\overline{b}c, \overline{a}bc, a\overline{b}\overline{c}, ab\overline{c}, abc$
 		\end{itemize}
 		\item \textbf{SOP Canônica:}
-		\[
-		F(A,B,C) = A'B'C + A'BC + AB'C' + ABC' + ABC
-		\]
+		$f(a,b,c) = \overline{a}\overline{b}c + \overline{a}bc + a\overline{b}\overline{c} + ab\overline{c} + abc$
 	\end{itemize}
 \end{frame}
 
-\section{Produto de Somas Canônica (POS)}
-
-\begin{frame}{Definição e Propriedades}
+\begin{frame}{POS - Prática guiada 02}
 	\begin{itemize}
-		\item Forma canônica que seleciona as somas das variáveis onde o resultado é 0.
-		\item Propriedades:
-		\begin{itemize}
-			\item Unicidade: Existe uma única POS canônica para cada função booleana.
-			\item Importância: Utilizada em design digital para implementar lógica com portas OR e AND.
-			\item Minimização: Pode ser simplificada como a SOP canônica.
-		\end{itemize}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Exemplo de POS Canônica}
-	\begin{itemize}
-		\item \textbf{Tabela Verdade:}
+		\item Considere a função f(a, b, c) definida pela tabela verdade:
+		\item \textbf{tabela verdade:}
 		\begin{tabular}{|c|c|c|c|}
 			\hline
-			A & B & C & F(A, B, C) \\
+			a & b & c & f(a, b, c) \\
 			\hline
 			0 & 0 & 0 & 0 \\
 			0 & 0 & 1 & 1 \\
@@ -220,40 +289,21 @@
 		\end{tabular}
 		\item \textbf{Maxtermos:}
 		\begin{itemize}
-			\item (A + B + C), (A + B' + C), (A' + B + C')
+			\item $(a + b + c), (a + \overline{b} + c), (\overline{a} + b + \overline{c})$
 		\end{itemize}
 		\item \textbf{POS Canônica:}
-		\[
-		F(A,B,C) = (A + B + C) \cdot (A + B' + C) \cdot (A' + B + C')
-		\]
+		$f(a,b,c) = (a + b + c) \cdot (a + \overline{b} + c) \cdot (\overline{a} + b + \overline{c})$
 	\end{itemize}
 \end{frame}
 
-\section{Mintermos e Maxtermos}
-
-\begin{frame}{Definição de Mintermos e Maxtermos}
-	\begin{itemize}
-		\item \textbf{Mintermo:}
-		\begin{itemize}
-			\item Produto de todas as variáveis complementadas ou não.
-			\item Exemplo: `A'B'C`
-		\end{itemize}
-		\item \textbf{Maxtermo:}
-		\begin{itemize}
-			\item Soma de todas as variáveis complementadas ou não.
-			\item Exemplo: `(A + B + C')`
-		\end{itemize}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Exercícios}
-	\par Criação de Circuito a partir da Tabela Verdade
+\begin{frame}{Exercício}
+	\par Criação de Circuito a partir da tabela verdade
 	\begin{itemize}
 		\item Dada a seguinte tabela verdade:
 		\[
 		\begin{array}{|c|c|c|c|}
 			\hline
-			x & y & z & F(x, y, z) \\
+			x & y & z & f(x, y, z) \\
 			\hline
 			0 & 0 & 0 & 0 \\
 			0 & 0 & 1 & 1 \\
@@ -272,6 +322,39 @@
 			\item Crie o diagrama de tempo correspondente ao circuito.
 		\end{enumerate}
 	\end{itemize}
+\end{frame}
+
+\begin{frame}{Exercício - Resolução}
+	
+	\begin{columns}
+		\column{.5\linewidth}
+			\par Selecionando os \textcolor{green}{mintermos} (Soma de Produtos Canônica)
+			\[\begin{array}{|c|c|c|c|}
+				\hline
+				x & y & z & f(x, y, z) \\
+				\hline
+				0 & 0 & 0 & 0 \\
+				0 & 0 & 1 & \cellcolor{green} 1 \\
+				0 & 1 & 0 & 0 \\
+				0 & 1 & 1 & \cellcolor{green} 1 \\
+				1 & 0 & 0 & \cellcolor{green} 1 \\
+				1 & 0 & 1 & 0 \\
+				1 & 1 & 0 & 0 \\
+				1 & 1 & 1 & \cellcolor{green} 1 \\
+				\hline
+			\end{array}\]
+			\par $f(x,y,z) = (\overline{x}\overline{y}z)+(\overline{x}yz)+(x\overline{y}\overline{z})+(xyz)$
+		\column{.5\linewidth}
+			\par Agrupando $(\overline{x}yz)+(xyz) = (yz).(\overline{x}+x) = (yz) . 1 = \boxed{yz}$
+			\par Agrupando $yz$ com o restante da expressão $\boxed{yz}+(\overline{x}\overline{y}z)+(x\overline{y}\overline{z})$.\newline
+			\par Fatorando $z$: $z.(y + \overline{x}\overline{y})+(x\overline{y}\overline{z}) = z.(\overline{x}+y)+(x\overline{y}\overline{z}) = \boxed{\overline{x}z+yz+x\overline{y}\overline{z}}$
+			\begin{figure}
+				\centering
+				\input{images/exe15}
+				\label{fig:exe15}
+			\end{figure}
+			
+	\end{columns}
 \end{frame}
 
 \begin{frame}{Mini prova 03}
