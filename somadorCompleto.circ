@@ -18,7 +18,7 @@
   <lib desc="#BFH-Praktika" name="9"/>
   <lib desc="#Input/Output-Extra" name="10"/>
   <lib desc="#Soc" name="11"/>
-  <main name="somador"/>
+  <main name="main"/>
   <options>
     <a name="gateUndefined" val="ignore"/>
     <a name="simlimit" val="1000"/>
@@ -51,36 +51,22 @@
     <tool lib="4" name="D Flip-Flop"/>
     <tool lib="4" name="Register"/>
   </toolbar>
-  <circuit name="somador">
+  <circuit name="main">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="somador"/>
+    <a name="circuit" val="main"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="1.0"/>
-    <appear>
-      <rect fill="none" height="50" stroke="#000000" width="70" x="50" y="50"/>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="60" y="59">a</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="60" y="90">b</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="79" y="61">Cin</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="103" y="81">Cout</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="106" y="59">Sum</text>
-      <circ-anchor facing="east" x="120" y="60"/>
-      <circ-port dir="in" pin="260,170" x="50" y="60"/>
-      <circ-port dir="in" pin="290,170" x="50" y="90"/>
-      <circ-port dir="in" pin="320,170" x="80" y="50"/>
-      <circ-port dir="out" pin="540,360" x="120" y="60"/>
-      <circ-port dir="out" pin="540,500" x="120" y="80"/>
-    </appear>
-    <comp lib="0" loc="(260,170)" name="Pin">
+    <comp lib="0" loc="(260,290)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="south"/>
       <a name="label" val="a"/>
     </comp>
-    <comp lib="0" loc="(290,170)" name="Pin">
+    <comp lib="0" loc="(290,290)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="south"/>
       <a name="label" val="b"/>
     </comp>
-    <comp lib="0" loc="(320,170)" name="Pin">
+    <comp lib="0" loc="(320,290)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="south"/>
       <a name="label" val="Cin"/>
@@ -105,26 +91,23 @@
     <comp lib="1" loc="(520,500)" name="OR Gate">
       <a name="inputs" val="3"/>
     </comp>
-    <wire from="(260,170)" to="(260,320)"/>
+    <wire from="(260,290)" to="(260,320)"/>
     <wire from="(260,320)" to="(260,420)"/>
     <wire from="(260,320)" to="(360,320)"/>
     <wire from="(260,420)" to="(260,480)"/>
     <wire from="(260,420)" to="(360,420)"/>
-    <wire from="(260,480)" to="(260,590)"/>
     <wire from="(260,480)" to="(360,480)"/>
-    <wire from="(290,170)" to="(290,360)"/>
+    <wire from="(290,290)" to="(290,360)"/>
     <wire from="(290,360)" to="(290,460)"/>
     <wire from="(290,360)" to="(360,360)"/>
     <wire from="(290,460)" to="(290,540)"/>
     <wire from="(290,460)" to="(360,460)"/>
-    <wire from="(290,540)" to="(290,590)"/>
     <wire from="(290,540)" to="(360,540)"/>
-    <wire from="(320,170)" to="(320,380)"/>
+    <wire from="(320,290)" to="(320,380)"/>
     <wire from="(320,380)" to="(320,520)"/>
     <wire from="(320,380)" to="(460,380)"/>
     <wire from="(320,520)" to="(320,580)"/>
     <wire from="(320,520)" to="(360,520)"/>
-    <wire from="(320,580)" to="(320,590)"/>
     <wire from="(320,580)" to="(360,580)"/>
     <wire from="(410,440)" to="(440,440)"/>
     <wire from="(410,500)" to="(470,500)"/>

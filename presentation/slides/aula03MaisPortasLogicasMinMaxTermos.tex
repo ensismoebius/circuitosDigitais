@@ -375,9 +375,76 @@
 	\end{figure}
 \end{frame}
 
-\section{Bom... Agora vamos fazer algumas coisa legais}
+\section{\musEighth All you need is NAND/NOR... \musEighth}
 
 \begin{frame}
-	\frametitle{\musEighth All you need is NAND... \musEighth}
+	\frametitle{O que fazer se você não tem as portas lógicas que vc precisa}
+	\par $\overline{a} = a\downarrow a = a \uparrow a$
+	\begin{figure}
+		\centering
+		\input{images/nandNot}
+		\label{fig:nandnot}
+	\end{figure}
+	
+	\par $a.b = (a \downarrow a)\downarrow(b\downarrow b) = (a\uparrow b)\uparrow(a\uparrow b)$
+	\begin{figure}
+		\centering
+		\input{images/nandAnd}
+		\label{fig:nandand}
+	\end{figure}
+	
+	\par $a+b=(a \downarrow b)\downarrow(a \downarrow b)=(a \uparrow a)\uparrow(b \uparrow b)$
+	\begin{figure}
+		\centering
+		\input{images/nandOr}
+		\label{fig:nandor}
+	\end{figure}
+\end{frame}
+
+\section{O que mídia não quer que você saiba sobre o XOR \footnote[frame]{Coringando já...}}
+
+\begin{frame}
+	\frametitle{Equivalências do XOR}
+	\par Até agora nos foram apresentadas as equivalências das portas AND e OR, porém, muitas vezes nos depararemos com portas XOR. Seria interessante sabermos sua equivalências também:
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			a & b & \(a \oplus b\) & \(\overline{a}b + a\overline{b}\) & \(\overline{\overline{a}\overline{b} + ab}\) & \(\overline{a}\) & \(\overline{b}\) & \(ab\) & \(\overline{a}b\) & \(a\overline{b}\) & \(\overline{a}\overline{b}\) \\ \hline
+			0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 1 \\ \hline
+			0 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 1 & 0 & 0 \\ \hline
+			1 & 0 & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 0 \\ \hline
+			1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\ \hline
+		\end{tabular}
+		\caption{Tabela verdade das equivalências de XOR}
+		\label{tab:equivalXOR}
+	\end{table}
+	
+	\par $a \oplus b = \overline{a}b + a\overline{b}\ = \overline{\overline{a}\overline{b} + ab}$
 	
 \end{frame}
+
+\begin{frame}
+	\frametitle{Equivalências do XOR - Exercício}
+	\par Usando a tabela verdade prove que $a \oplus (b \oplus c) = (a \oplus b) \oplus c$ e portanto que XOR é comutativo.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Revelação!}
+	\par Que idade você tinha ao ficar sabendo que XOR só tem saída verdadeira quando o número de entradas verdadeiras é ímpar??
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

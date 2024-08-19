@@ -1,0 +1,599 @@
+\subsection{Somadores}
+\begin{frame}
+	\frametitle{Como fazer a soma binária}
+	\framesubtitle{Expressão de exemplo}
+	\par Abaixo foi realizada uma operação de soma simples entre dois números binários, a e b, cujo resultado é mostrado na linha marcada com a palavra 'Sum'. '$C_{in}$' e '$C_{out}$' significa 'Carry in' e 'Carry out', o nosso famoso 'Vai um'. A partir deste exemplo, vamos criar uma tabela-verdade que nos permitirá formular a expressão algébrica booleana e, consequentemente, o circuito somador correspondente.
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{cccc>{\centering\arraybackslash}p{2cm}}
+		  $\overset{C_{out}}{1}$ & $\overset{C_{in}}{1}$ & & & $C_{in}$ / $C_{out}$ \\ \cline{1-4}
+			& 1 & 1 & 0 & a \\ 
+			& 1 & 1 & 1 & b \\ \cline{1-4}
+			1 & 1 & 0 & 1 & Sum \\
+		\end{tabular}
+	\end{table}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Como fazer a soma binária}
+	\only<1>{
+		\framesubtitle{Tabela verdade da soma}
+		\par Abaixo, representamos a tabela-verdade da soma binária. O objetivo da desta é modelar o comportamento da soma de dois bits. Como vimos na soma binária anterior, quando um bit 1 é somado a outro bit 1, o valor resultante é zero; no entanto, a próxima soma recebe um bit 1 adicional. Esse bit adicional é chamado de 'Carry in' quando é recebido, e de 'Carry out' quando é emitido. O objetivo da tabela-verdade abaixo é representar a soma e o 'Carry out' resultantes da soma de dois bits.
+		\begin{table}[h!]
+			\centering
+			\begin{tabular}{|c|c|c|c|}
+				\hline
+				a & b & Sum & $C_{out}$\\ \hline
+				0 & 0 & 0   & 0          \\ \hline
+				0 & 1 & 1   & 0          \\ \hline
+				1 & 0 & 1   & 0          \\ \hline
+				1 & 1 & 0   & 1          \\ \hline
+			\end{tabular}
+			\caption{Tabela verdade da soma binária}
+			\label{tab:binary_addition}
+		\end{table}
+		
+	}
+	\only<2>{
+		\framesubtitle{\textbf{Prática dirigida} - Tabela verdade da soma}
+		\par Como $Sum$ e $C_{out}$ se comportam? O que $C_{out}$ representa em termos de uma soma computacional? Qual o circuito correspondente?
+		\begin{table}[h!]
+			\centering
+			\begin{tabular}{|c|c|c|c|}
+				\hline
+				a & b & Sum & $C_{out}$\\ \hline
+				0 & 0 & 0   & 0          \\ \hline
+				0 & 1 & 1   & 0          \\ \hline
+				1 & 0 & 1   & 0          \\ \hline
+				1 & 1 & 0   & 1          \\ \hline
+			\end{tabular}
+			\caption{Tabela verdade da soma binária}
+			\label{tab:binary_addition2}
+		\end{table}
+	}
+	\only<3>{
+		\framesubtitle{\textbf{Prática dirigida} - Tabela verdade da soma}
+		\begin{columns}
+			\column{.5\linewidth}
+			\begin{table}[h!]
+				\centering
+				\begin{tabular}{|c|c|c|c|c|c|}
+					\hline
+					a & b & Sum & \(C_{out}\)& \(a \oplus b\) & \(a \cdot b\) \\ \hline
+					0 & 0 & 0   & 0          & 0              & 0             \\ \hline
+					0 & 1 & 1   & 0          & 1              & 0             \\ \hline
+					1 & 0 & 1   & 0          & 1              & 0             \\ \hline
+					1 & 1 & 0   & 1          & 0              & 1             \\ \hline
+				\end{tabular}
+				\caption{Tabela verdade da soma binária}
+				\label{tab:binary_addition3}
+			\end{table}
+			\column{.5\linewidth}
+			\begin{figure}
+				\centering
+				\input{images/somadorIncompleto}
+				\label{fig:somadorincompleto}
+			\end{figure}
+			
+		\end{columns}
+	}
+\end{frame}
+\begin{frame}
+	\frametitle{Meio somador / Somador incompleto / Half adder}
+	\par A tabela-verdade e o circuito mostrados abaixo representam o que chamamos de \textbf{meio somador}, \textbf{somador incompleto} ou ainda \textit{\textbf{Half Adder}}. O meio somador tem essa denominação porque, apesar de realizar a soma de dois bits, não considera um bit que possa vir para complementar sua operação. Dessa forma, o circuito é capaz de trabalhar apenas com a soma de dois bits, informando se houve um bit $C_{out}$. Isso impede a criação de somadores para números maiores por meio da concatenação de vários circuitos
+	\begin{columns}
+		\column{.5\linewidth}
+		\begin{table}[h!]
+			\centering
+			\begin{tabular}{|c|c|c|c|c|c|}
+				\hline
+				a & b & Sum & \(C_{out}\)& \(a \oplus b\) & \(a \cdot b\) \\ \hline
+				0 & 0 & 0   & 0          & 0              & 0             \\ \hline
+				0 & 1 & 1   & 0          & 1              & 0             \\ \hline
+				1 & 0 & 1   & 0          & 1              & 0             \\ \hline
+				1 & 1 & 0   & 1          & 0              & 1             \\ \hline
+			\end{tabular}
+			\caption{Tabela verdade da soma binária}
+			\label{tab:binary_addition4}
+		\end{table}
+		\column{.5\linewidth}
+		\begin{figure}
+			\centering
+			\input{images/somadorIncompleto}
+			\label{fig:somadorincompleto2}
+		\end{figure}
+		
+	\end{columns}
+\end{frame}
+\begin{frame}
+	\frametitle{Somador completo}
+	\par Para determinar um somador completo, é necessário considerar não apenas as entradas $a$ e $b$, mas também uma entrada $C_{in}$​, que representa o possível bit vindo do $C_{out}$​ de outro circuito. Dessa forma, o resultado da soma é alterado, o que, por sua vez, modifica a expressão final e o circuito resultante.
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			a & b & $C_{in}$ & Sum \\
+			\hline
+			0 & 0 & 0 & 0 \\
+			0 & 0 & 1 & 1 \\
+			0 & 1 & 0 & 1 \\
+			0 & 1 & 1 & 0 \\
+			1 & 0 & 0 & 1 \\
+			1 & 0 & 1 & 0 \\
+			1 & 1 & 0 & 0 \\
+			1 & 1 & 1 & 1 \\
+			\hline
+		\end{tabular}
+		\caption{Tabela verdade de um somador completo}
+		\label{tab:full_adder}
+	\end{table}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Somador completo}
+	\framesubtitle{\textbf{Prática guiada}}
+	\par Considerando a tabela verdade mostrada determine a expressão algébrica boleana e o circuito correspondentes.
+	\begin{columns}
+		\column{.5\linewidth}
+			\begin{table}[h!]
+				\centering
+				\begin{tabular}{|c|c|c|c|}
+					\hline
+					a & b & $C_{in}$ & Sum \\
+					\hline
+					0 & 0 & 0 & 0 \\
+					0 & 0 & 1 & 1 \\
+					0 & 1 & 0 & 1 \\
+					0 & 1 & 1 & 0 \\
+					1 & 0 & 0 & 1 \\
+					1 & 0 & 1 & 0 \\
+					1 & 1 & 0 & 0 \\
+					1 & 1 & 1 & 1 \\
+					\hline
+				\end{tabular}
+				\caption{Tabela verdade de $C_{in}$ para somador completo}
+				\label{tab:full_adder2}
+			\end{table}
+		\column{.5\linewidth}
+			\pause
+			\par Para facilitar a notação considerando $c=C_{in}$ Temos por \textit{mimtermos}:
+			\begin{equation}
+				\begin{aligned}
+					&(\overline{a}\overline{b}c)+(\overline{a}b\overline{c})+(a\overline{b}\overline{c})+(abc) = \\
+					&\overline{a}.(\overline{b}c+b\overline{c}) + a.(\overline{b}\overline{c}+bc) = \\
+					&\overline{a}.(b \oplus c) + a.(\overline{b \oplus c}) = \\
+					& \boxed{a \oplus (b \oplus c)}
+				\end{aligned}
+			\end{equation}
+			\pause
+			\begin{figure}
+				\centering
+				\input{images/somadorCompletoParte01}
+				\label{fig:somadorcompletoparte01}
+			\end{figure}
+	\end{columns}
+\end{frame}
+\begin{frame}
+	\frametitle{Somador completo}
+	\par Um somador completo deve não apenas receber um $C_{in}$ como também gerar um $C_{out}$. Portanto, é necessário determinar como o $C_{out}$ é obtido.
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			a & b & $C_{in}$ & $C_{out}$ \\
+			\hline
+			0 & 0 & 0 & \pause 0 \\
+			0 & 0 & 1 & \pause 0 \\
+			0 & 1 & 0 & \pause 0 \\
+			0 & 1 & 1 & \pause 1 \\
+			1 & 0 & 0 & \pause 0 \\
+			1 & 0 & 1 & \pause 1 \\
+			1 & 1 & 0 & \pause 1 \\
+			1 & 1 & 1 & \pause 1 \\
+			\hline
+		\end{tabular}
+		\caption{Tabela verdade de $C_{out}$ para somador completo}
+		\label{tab:carry_out}
+	\end{table}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Somador completo}
+	\framesubtitle{\textbf{Prática dirigida}}
+	\par A partir da tabela-verdade mostrada determine a expressão algébrica booleana correspondente e o respectivo circuito de $C_{out}$\footnote[frame]{boa sorte...}.
+	
+	\begin{columns}
+		\column{.6\linewidth}
+			\begin{table}[h!]
+				\centering
+				\begin{tabular}{|c|c|c|c|}
+					\hline
+					a & b & $C_{in}$ & $C_{out}$ \\
+					\hline
+					0 & 0 & 0 & 0 \\
+					0 & 0 & 1 & 0 \\
+					0 & 1 & 0 & 0 \\
+					0 & 1 & 1 & 1 \\
+					1 & 0 & 0 & 0 \\
+					1 & 0 & 1 & 1 \\
+					1 & 1 & 0 & 1 \\
+					1 & 1 & 1 & 1 \\
+					\hline
+				\end{tabular}
+				\caption{Tabela-verdade de $C_{out}$ para somador completo}
+				\label{tab:carry_out2}
+			\end{table}
+		\column{.4\linewidth}
+			\par Para facilitar a notação considerando $c=C_{in}$ temos por \textit{mimtermos}:
+			\begin{equation}
+				\begin{aligned}
+					&(\overline{a}bc)+(a\overline{b}c)+(ab\overline{c})+(abc) = \\
+				\end{aligned}
+			\end{equation}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Somador completo}
+	\framesubtitle{\textbf{Prática dirigida}}
+	\begin{columns}
+		\column{.5\linewidth}
+			\begin{equation}
+				\begin{aligned}
+					&(\overline{a}bc)+(a\overline{b}c)+(ab\overline{c})+(abc) = \\ \pause
+					&\text{reorganizando:} \\
+					&(a\overline{b}c)+(ab\overline{c})+(abc)+(\overline{a}bc) = \\ \pause
+					&\text{pondo \textbf{a} em evidência:} \\
+					&a.(\overline{b}c+b\overline{c}+bc)+(\overline{a}bc) = \\ \pause
+					&\text{pondo \textbf{c} em evidência} \\
+					&a.(c.(\overline{b}b)+b\overline{c})+(\overline{a}bc) = \\ \pause
+					&a.(c.1+b\overline{c})+(\overline{a}bc) = \\ \pause
+					&a.(c+b\overline{c})+(\overline{a}bc) = \\ \pause
+				\end{aligned}
+			\end{equation}
+		\column{.5\linewidth}
+			\begin{equation}
+				\begin{aligned}
+					&\text{usando o teorema:} x+\overline{x}y = x+y \\ \pause
+					&a.(c+b)+(\overline{a}bc) = \\
+					&ac+ab+\overline{a}bc = \\ 
+					&\text{colocando \textbf{b} em evidência:} \\ \pause
+					&ac+b.(a+\overline{a}c) = \\
+					&\text{usando o teorema:} x+\overline{x}y = x+y \\ \pause
+					&ac+b.(a+c) = \\
+					&\boxed{ac+ba+bc}
+				\end{aligned}
+			\end{equation}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Somador completo}
+	\framesubtitle{\textbf{Prática dirigida}}
+	\par Portanto o circuito do $C_{out}$ fica assim:
+	\begin{figure}
+		\centering
+		\input{images/somadorCompletoParte02}
+		\label{fig:somadorcompletoparte02}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Somador completo}
+	\framesubtitle{\textbf{Prática dirigida}}
+	\par Portanto o circuito \textbf{somador completo} ou \textbf{Full adder} fica assim:
+	\begin{figure}
+		\centering
+		\input{images/somadorCompleto}
+		\label{fig:somadorcompleto}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Somador completo - Gambiarra}
+	\par Usando somadores incompletos podemos fazer um completo:
+	\begin{figure}
+		\centering
+		\input{images/somadorCompletoGambiarra}
+		\label{fig:somadorcompletogambiarra}
+	\end{figure}
+\end{frame}
+
+\subsection{Subtratores}
+
+\begin{frame}
+	\frametitle{Subtração binária}
+	\framesubtitle{Expressão de exemplo}
+	\par Abaixo foi realizada uma operação de subtração simples entre dois números binários, a e b, cujo resultado é mostrado na linha marcada com a palavra 'Diff'. '$B_{out}$' significa 'Borrow out', o nosso famoso 'emprestar'. A partir deste exemplo, vamos criar uma tabela-verdade que nos permitirá formular a expressão algébrica booleana e, consequentemente, o circuito subtrator correspondente.
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{cccc>{\centering\arraybackslash}p{2cm}}
+			& 10 & 10 & 10 & $B_{out}$ \\
+			1 & 1 & 0 & 0 & $a$\\
+			& 1 & 1 & 1 & $b$ \\
+			\hline
+			& 1 & 0 & 1 & $Diff$ \\
+		\end{tabular}
+	\end{table}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Meio subtrator / Subtrator incompleto / Half subtractor}
+	\par A tabela-verdade e o circuito mostrados abaixo representam o que chamamos de \textbf{meio subtrator}, \textbf{subtrator incompleto} ou ainda \textit{\textbf{Half subtrator}}. O meio subtrator tem essa denominação porque, apesar de realizar a subtração de dois bits, não considera um bit que possa ter sido emprestado por uma operação de subtração anterior. Dessa forma, o circuito é capaz de trabalhar apenas com a subtração de dois bits, informando se houve necessidade de empréstimo de um bit $B_{out}$. Isso impede a criação de subtratores para números maiores por meio da concatenação de vários circuitos
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			a & b & Diff & \(B_{out}\) \\ \hline
+			0 & 0 & 0   & 0          \\ \hline
+			0 & 1 & 1   & 1          \\ \hline
+			1 & 0 & 1   & 0          \\ \hline
+			1 & 1 & 0   & 0          \\ \hline
+		\end{tabular}
+		\caption{Tabela verdade da diferença binária}
+		\label{tab:binary_subtraction}
+	\end{table}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Meio subtrator / Subtrator incompleto / Half subtractor}
+	\framesubtitle{\textbf{Prática dirigida} - Tabela verdade da subtração}
+	\par Como $Diff$ e $B_{out}$ se comportam? Qual o circuito correspondente?
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			a & b & Diff & \(B_{out}\) \\ \hline
+			0 & 0 & 0   & 0          \\ \hline
+			0 & 1 & 1   & 1          \\ \hline
+			1 & 0 & 1   & 0          \\ \hline
+			1 & 1 & 0   & 0          \\ \hline
+		\end{tabular}
+		\caption{Tabela verdade da diferença binária}
+		\label{tab:binary_subtraction2}
+	\end{table}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Meio subtrator / Subtrator incompleto / Half subtractor}
+	\framesubtitle{\textbf{Prática dirigida} - Tabela verdade da subtração}
+	\begin{columns}
+		\column{.5\linewidth}
+		\begin{table}[h!]
+			\centering
+			\begin{tabular}{|c|c|c|c|c|c|}
+				\hline
+				a & b & Diff & \(B_{out}\)& \(a \oplus b\) & \(\overline{a}.b\) \\ \hline
+				0 & 0 & 0   & 0          & 0              & 0             \\ \hline
+				0 & 1 & 1   & 1          & 1              & 1             \\ \hline
+				1 & 0 & 1   & 0          & 1              & 0             \\ \hline
+				1 & 1 & 0   & 0          & 0              & 0             \\ \hline
+			\end{tabular}
+			\caption{Tabela verdade da diferença binária}
+			\label{tab:binary_subtraction3}
+		\end{table}
+		\pause
+		\column{.5\linewidth}
+		\begin{figure}
+			\centering
+			\input{images/subtratorImcompleto}
+			\label{fig:subtratorimcompleto}
+		\end{figure}
+	\end{columns}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}
+	\frametitle{Subtrator completo}
+	\par Para determinar um subtrator completo, é necessário considerar não apenas as entradas $a$ e $b$, mas também uma entrada $B_{in}$​, que representa o possível bit subtrator vindo do $B_{out}$​ de outro circuito. Dessa forma, o resultado da subtração é alterado, o que, por sua vez, modifica a expressão final e o circuito resultante.
+	\par Tenha em mente que $Diff = a-b-B_{in}$.
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			a & b & $B_{in}$ & Diff & $B_{out}$ \\
+			\hline
+			0 & 0 & 0 & 0 & 0 \\
+			0 & 0 & 1 & 1 & 1 \\
+			0 & 1 & 0 & 1 & 1 \\
+			0 & 1 & 1 & 0 & 1 \\
+			1 & 0 & 0 & 1 & 0 \\
+			1 & 0 & 1 & 0 & 0 \\
+			1 & 1 & 0 & 0 & 0 \\
+			1 & 1 & 1 & 1 & 1 \\
+			\hline
+		\end{tabular}
+		\caption{Tabela verdade de um subtrator completo}
+		\label{tab:full_subtractor}
+	\end{table}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Subtrator completo}
+	\framesubtitle{\textbf{Prática guiada}}
+	\par Considerando a tabela verdade mostrada determine as expressões algébricas boleanas e os circuitos de $Diff$ e $B_{out}$ correspondentes.
+	\begin{columns}
+		\column{.5\linewidth}
+		\begin{table}[h!]
+			\centering
+			\begin{tabular}{|c|c|c|c|c|}
+				\hline
+				a & b & $B_{in}$ & Diff & $B_{out}$ \\
+				\hline
+				0 & 0 & 0 & 0 & 0 \\
+				0 & 0 & 1 & 1 & 1 \\
+				0 & 1 & 0 & 1 & 1 \\
+				0 & 1 & 1 & 0 & 1 \\
+				1 & 0 & 0 & 1 & 0 \\
+				1 & 0 & 1 & 0 & 0 \\
+				1 & 1 & 0 & 0 & 0 \\
+				1 & 1 & 1 & 1 & 1 \\
+				\hline
+			\end{tabular}
+			\caption{Tabela verdade de $B_{in}$ para subtrator completo}
+			\label{tab:full_subtractor2}
+		\end{table}
+		\column{.5\linewidth}
+		\pause
+		\par Se você olhou bem, economizou tempo! Pois $Diff = a \oplus b \oplus c \therefore$ $\boxed{Diff=a \oplus b \oplus B_{in}}$
+		\pause
+		\begin{figure}
+			\centering
+			\input{images/subtratorCompletoParte01}
+			\label{fig:subtratorcompletoparte01}
+		\end{figure}
+	\end{columns}
+\end{frame}
+\begin{frame}
+	\frametitle{Subtrator completo}
+	\framesubtitle{\textbf{Prática dirigida}}
+	\par A partir da tabela-verdade mostrada determine a expressão algébrica booleana correspondente e o respectivo circuito de $B_{out}$.
+	
+	\begin{columns}
+		\column{.6\linewidth}
+		\begin{table}[h!]
+			\centering
+			\begin{tabular}{|c|c|c|c|c|}
+				\hline
+				a & b & $B_{in}$ & Diff & $B_{out}$ \\
+				\hline
+				0 & 0 & 0 & 0 & 0 \\
+				0 & 0 & 1 & 1 & 1 \\
+				0 & 1 & 0 & 1 & 1 \\
+				0 & 1 & 1 & 0 & 1 \\
+				1 & 0 & 0 & 1 & 0 \\
+				1 & 0 & 1 & 0 & 0 \\
+				1 & 1 & 0 & 0 & 0 \\
+				1 & 1 & 1 & 1 & 1 \\
+				\hline
+			\end{tabular}
+			\caption{Tabela-verdade de $B_{out}$ para subtrator completo}
+			\label{tab:barroe_out2}
+		\end{table}
+		\column{.4\linewidth}
+			\par Para facilitar a notação considerando $c=B_{in}$ temos por \textit{mimtermos}:
+			\begin{equation}
+				\begin{aligned}
+					&(\overline{a}\overline{b}c)+(\overline{a}b\overline{c})+(\overline{a}bc)+(abc)
+				\end{aligned}
+			\end{equation}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Subtrator completo}
+	\framesubtitle{\textbf{Prática dirigida}}
+	\begin{columns}
+		\column{.5\linewidth}
+		\begin{equation}
+			\begin{aligned}
+			&(\overline{a}\overline{b}c)+(\overline{a}b\overline{c})+(\overline{a}bc)+(abc) = \\
+			&\text{pondo em evidência } \overline{a}: \\
+			&\overline{a}.(\overline{b}c+b\overline{c}+bc)+(abc) =\\
+			&\overline{a}.(\overline{b}c+ b.(\overline{c}+c))+(abc) =\\
+			&\overline{a}.(\overline{b}c+ b.1)+(abc) =\\
+			&\overline{a}.(\overline{b}c+ b)+(abc) =\\
+			&\text{usando o teorema:} x+\overline{x}y = x+y \\
+			&\overline{a}.(b+c)+(abc) =\\
+			&\overline{a}b+\overline{a}c+abc =\\
+			\end{aligned}
+		\end{equation}
+		\column{.5\linewidth}
+		\begin{equation}
+			\begin{aligned}
+				&\overline{a}b+\overline{a}c+abc =\\
+				&\text{fatorando } c: \\
+				&\overline{a}b+c.(\overline{a}+ab) = \\
+				&\text{usando o teorema:} x+\overline{x}y = x+y \\
+				&\overline{a}b+c.(\overline{a}+b) = \\
+				&\overline{a}b+\overline{a}c+bc \therefore \\
+				&\boxed{B_{out}=\overline{a}b+\overline{a}B_{in}+bB_{in}}
+			\end{aligned}
+		\end{equation}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Subtrator completo}
+	\framesubtitle{\textbf{Prática dirigida}}
+	\par Portanto o circuito do $B_{out}$ fica assim:
+	\begin{figure}
+		\centering
+		\input{images/subtratorCompletoParte02}
+		\label{fig:subtratorcompletoparte02}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Subtrator completo}
+	\framesubtitle{\textbf{Prática dirigida}}
+	\par Portanto o circuito \textbf{subtrator completo} ou \textbf{Full subtractor} fica assim:
+	\begin{figure}
+		\centering
+		\input{images/subtratorCompleto}
+		\label{fig:subtratorcompleto}
+	\end{figure}
+\end{frame}
+
+\section{Mas... mas... \textit{Oh... wait a fucking moment!}}
+
+\begin{frame}
+	\frametitle{KKKKKKKK}
+	\begin{columns}
+		\column{.5\linewidth}
+			\begin{figure}
+			\centering
+			\input{images/subtratorCompleto}
+			\label{fig:subtratorcompleto2}
+		\end{figure}
+		\column{.5\linewidth}
+			\begin{figure}
+			\centering
+			\input{images/somadorCompleto}
+			\label{fig:somadorcompleto2}
+		\end{figure}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Somador completo}
+	\framesubtitle{\textbf{Demonstração}}
+	\par Vamos fazer um somador completo no logisim.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Mini prova 04}
+	\par Altere o circuito somador completo para que o mesmo tenha um modo somador e um modo subtrator.
+\end{frame}
+
+
+
+
+
